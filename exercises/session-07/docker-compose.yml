@@ -1,0 +1,58 @@
+name: sql-course
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: sql-course-postgres
+    environment:
+      POSTGRES_USER: student
+      POSTGRES_PASSWORD: student
+      POSTGRES_DB: shop
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres/init:/docker-entrypoint-initdb.d:ro
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U student -d shop"]
+      interval: 5s
+      timeout: 5s
+      retries: 60
+
+  adminer:
+    image: adminer:4.8.1
+    container_name: sql-course-adminer
+    environment:
+      ADMINER_DEFAULT_SERVER: postgres
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # Only for the SQL in Scale section:  docker compose --profile scale up -d
+  clickhouse:
+    image: clickhouse/clickhouse-server:24.8
+    container_name: sql-course-clickhouse
+    profiles: ["scale"]
+    environment:
+      CLICKHOUSE_DB: shop
+      CLICKHOUSE_USER: student
+      CLICKHOUSE_PASSWORD: student
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
+    ports:
+      - "8123:8123"
+    volumes:
+      - ./clickhouse/init:/docker-entrypoint-initdb.d:ro
+      - chdata:/var/lib/clickhouse
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  pgdata:
+  chdata:
