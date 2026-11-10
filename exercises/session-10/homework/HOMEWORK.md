@@ -12,7 +12,8 @@ environment works before you start writing code.
 
 ### 0.1 Start the stack
 
-From the kit's folder:
+From the session kit folder, `exercises/session-10/session`. Run every command in this
+file from there; your homework DAGs go in its `dags/homework/` folder.
 
 ```bash
 ./databurst.sh up

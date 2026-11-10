@@ -16,10 +16,10 @@ passed.
 ## Running the solutions
 
 They live outside the `dags/` folder on purpose, so they do not show up in the class's UI.
-To run one, copy it in:
+To run one, copy it into the session kit. From `exercises/session-10/session`:
 
 ```bash
-mkdir -p dags/homework && cp homework_answers/dags/hw1_daily_greeting.py dags/homework/
+mkdir -p dags/homework && cp ../homework/answers/dags/hw1_daily_greeting.py dags/homework/
 ```
 
 ```bash
