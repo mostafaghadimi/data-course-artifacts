@@ -174,9 +174,3 @@ Requirements:
 **Bonus:** make the load fail on purpose, for example with a typo in the SQL. Watch the
 retries, find the `ALERT` line in the log, and confirm the staging table was still dropped.
 
----
-
-## Hand-in
-
-Send your three files from `dags/homework/` and a screenshot of the Grid view for each
-DAG. For question 3, add the output of the `hw_daily_totals` query.

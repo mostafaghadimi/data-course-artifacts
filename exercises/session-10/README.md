@@ -14,6 +14,7 @@ dags/05_connections_and_sensors.py     section 5  Connections, Variables, hooks,
 dags/06_production_patterns.py         section 6  retries, idempotency, callbacks, setup/teardown, dag.test()
 ../../slides/session-10.pdf            the deck (25 slides)
 homework/HOMEWORK.md                   preparation phase + easy / medium / hard questions for students
+homework_answers/                      answer key and solution DAGs (outside dags/ so they do not load in the UI)
 ```
 
 ## Run it
